@@ -1,6 +1,6 @@
 var app = module.exports = {},
     data = require('./film-data.js'),
-    request = require('request'),
+    request = require('request');
     // redis = require("redis"),
     // client = redis.createClient();
 
