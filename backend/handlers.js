@@ -37,12 +37,13 @@ handlers.undefined = function(req,res){
 };
 
 handlers.addToWatchlist = function(req,res){
-  var filmImg = req.url.split('filmImg=')[1].split('filmTitle=')[0];
-  var filmTitle = req.url.split('filmTitle=')[1].replace(/%20/g,' ');
-  app.addToWatchlist(filmImg, filmTitle, function(reply){
-    res.writeHead(200, headers);
-    res.end(reply);
-  });
+  // var filmImg = req.url.split('filmImg=')[1].split('filmTitle=')[0];
+  // var filmTitle = req.url.split('filmTitle=')[1].replace(/%20/g,' ');
+  // app.addToWatchlist(filmImg, filmTitle, function(reply){
+  //   res.writeHead(200, headers);
+  //   res.end(reply);
+  // });
+  res.end('PENDING');
 };
 
 handlers.getWatchList = function(req,res) {

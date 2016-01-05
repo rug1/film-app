@@ -1,8 +1,8 @@
 var app = module.exports = {},
     data = require('./film-data.js'),
     request = require('request'),
-    redis = require("redis"),
-    client = redis.createClient();
+    // redis = require("redis"),
+    // client = redis.createClient();
 
 app.getFilms = function (callback) {
   var randomFilm = Math.floor(Math.random() * (data.length + 1));
