@@ -20,7 +20,7 @@ handlers.files = function(req,res) {
 
 handlers.loadFilms = function(req,res){
   app.getFilms(function(body){
-    res.writeHead(200, headers);
+    res.writeHead(200, {"content-type":"text/jpeg"});
     res.end(body);
   });
 };
