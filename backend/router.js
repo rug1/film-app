@@ -4,13 +4,18 @@ var routes = {
   '/': handlers.home,
   '/files': handlers.files,
   '/loadFilms': handlers.loadFilms,
-  '404': handlers.notFound
+  '/addToWatchlist': handlers.addToWatchlist,
+  '404': handlers.notFound,
+  '/N/A': handlers.NA,
+  '/undefinded': handlers.undefined
 };
 
 module.exports = function(req, res) {
   console.log(req.url);
   if (routes[req.url]) {
     routes[req.url](req, res);
+  } else if (req.url.match('/addToWatchlist')) {
+    routes['/addToWatchlist'](req,res);
   } else if (req.url.match('.')) {
     routes['/files'](req,res);
   } else {

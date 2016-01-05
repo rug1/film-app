@@ -32,6 +32,8 @@ body {
   padding-top: 26%;
   padding-right: 5%;
   padding-left: 5%;
+  opacity: 0.5;
+  color: #ffffff;
 }
 
 .icons {
@@ -82,13 +84,14 @@ body {
     top: 0;
     z-index: 2;
     left: 0;
-    box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+    /*box-shadow: 0 0 20px rgba(0, 0, 0, .2);*/
     overflow: hidden;
     text-align: center;
     padding: 10px 10px 25px 10px;
-    background: #eee;
-    font-size: 24px;
-    color: #000;
+    background: #1E1E1E;
+    font-size: 18px;
+    color: #ffffff;
+    /*opacity: 0.9;*/
     border-radius: 3%;
     border: 1px solid #979797;
     box-shadow: 3px 3px 1.5px #000000;

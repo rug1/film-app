@@ -1,5 +1,6 @@
 var handlers = module.exports = {};
 var fs = require('fs');
+var qs = require('querystring');
 var app = require('./app.js');
 
 var headers = {"content-type":"text/html"};
@@ -22,6 +23,30 @@ handlers.loadFilms = function(req,res){
     res.writeHead(200, headers);
     res.end(body);
   });
+};
+
+handlers.NA = function(req,res){
+  var noImage = fs.readFileSync(__dirname + '/../' + '/img/noImage.png');
+  res.writeHead(200, headers);
+  res.end(noImage);
+};
+
+handlers.undefined = function(req,res){
+  res.writeHead(200, headers);
+  res.end();
+};
+
+handlers.addToWatchlist = function(req,res){
+  var filmImg = req.url.split('filmImg=')[1].split('filmTitle=')[0];
+  var filmTitle = req.url.split('filmTitle=')[1].replace(/%20/g,' ');
+  app.addToWatchlist(filmImg, filmTitle, function(reply){
+    res.writeHead(200, headers);
+    res.end(reply);
+  });
+};
+
+handlers.getWatchList = function(req,res) {
+
 };
 
 handlers.notFound = function(req,res){
