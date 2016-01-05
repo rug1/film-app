@@ -1,3 +1,5 @@
+console.log('javascript');
+
 var request = new XMLHttpRequest();
 var filmArray = [];
 var plots = [];
