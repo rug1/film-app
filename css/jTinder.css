@@ -136,6 +136,9 @@ body.has-active-menu {
   text-align: center;
   border-top: solid 1px #1E1E1E;
   border-bottom: solid 1px #1E1E1E;
+  padding: 12px 24px;
+  color: #fff;
+  text-decoration: none;
 }
 
 .c-menu--slide-left .c-menu__item:first-child {
@@ -144,13 +147,6 @@ body.has-active-menu {
 
 .c-menu--slide-left .c-menu__item:last-child {
   border-bottom: none;
-}
-
-.c-menu--slide-left .c-menu__link {
-  display: block;
-  padding: 12px 24px;
-  color: #fff;
-  text-decoration: none;
 }
 
 .c-menu--slide-left .c-menu__close {

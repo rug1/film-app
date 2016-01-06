@@ -37,17 +37,27 @@ handlers.undefined = function(req,res){
 };
 
 handlers.addToWatchlist = function(req,res){
-  // var filmImg = req.url.split('filmImg=')[1].split('filmTitle=')[0];
-  // var filmTitle = req.url.split('filmTitle=')[1].replace(/%20/g,' ');
-  // app.addToWatchlist(filmImg, filmTitle, function(reply){
-  //   res.writeHead(200, headers);
-  //   res.end(reply);
-  // });
-  res.end('OK');
+  var filmImg = req.url.split('filmImg=')[1].split('filmTitle=')[0];
+  var filmTitle = req.url.split('filmTitle=')[1].replace(/%20/g,' ');
+  app.addToWatchlist(filmImg, filmTitle, function(reply){
+    res.writeHead(200, headers);
+    res.end(reply);
+  });
 };
 
 handlers.getWatchList = function(req,res) {
+  app.getWatchList(function(watchlist){
+    res.writeHead(200, headers);
+    res.end(JSON.stringify(watchlist));
+  });
+};
 
+handlers.filter = function(req,res){
+  var filterOption = req.url.split('FilterOption')[0].replace('/','');
+  app.filter(filterOption, function(film){
+    res.writeHead(200, headers);
+    res.end(film);
+  });
 };
 
 handlers.notFound = function(req,res){

@@ -5,9 +5,11 @@ var routes = {
   '/files': handlers.files,
   '/loadFilms': handlers.loadFilms,
   '/addToWatchlist': handlers.addToWatchlist,
+  '/getWatchList': handlers.getWatchList,
+  '/filter': handlers.filter,
   '404': handlers.notFound,
   '/N/A': handlers.NA,
-  '/undefinded': handlers.undefined
+  '/undefined': handlers.undefined
 };
 
 module.exports = function(req, res) {
@@ -16,6 +18,8 @@ module.exports = function(req, res) {
     routes[req.url](req, res);
   } else if (req.url.match('/addToWatchlist')) {
     routes['/addToWatchlist'](req,res);
+  } else if (req.url.match('FilterOption')) {
+    routes['/filter'](req,res);
   } else if (req.url.match('.')) {
     routes['/files'](req,res);
   } else {

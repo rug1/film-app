@@ -1,8 +1,6 @@
-console.log('javascript');
-
 var request = new XMLHttpRequest();
-var filmArray = [];
-var plots = [];
+var filmArray = [],
+    plots = [];
 
 function loadFilms () {
   request.onreadystatechange = () => {
@@ -38,7 +36,6 @@ function domManipulation(filmArray) {
     var filmPlot = element.Plot;
     plots.push(filmPlot);
     if (count === filmArray.length) {
-      // console.log('HTML OF FILMS',films);
       document.getElementById('films').innerHTML = films;
       document.getElementById('filmBio').innerHTML = plots[filmArray.length-1];
       jTinder();
@@ -50,18 +47,69 @@ function domManipulation(filmArray) {
   // jTinder();
 }
 
-function watchList () {
-  document.getElementById('userIcon').addEventListener("click", function(){
-    request.onreadystatechange = () => {
-      if (request.readyState === 4 && request.status === 200) {
-        // console.log('£££££££££', request.responseText);
+document.getElementById('userIcon').addEventListener("click", function(){
+  request.onreadystatechange = () => {
+    if (request.readyState === 4 && request.status === 200) {
+      if (request.responseText !== 'error') {
+        console.log('GET WATCHLIST FROM DB>>>>>>>>', JSON.parse(request.responseText));
+      } else {
+        alert('There was an error. Please try again.');
       }
-    };
-    request.open("GET", "/getWatchList");
-    request.send();
+    }
+  };
+  request.open("GET", "/getWatchList");
+  request.send();
+});
+
+var filterOptions = [
+  romance     = document.getElementById('romance').innerHTML.toLowerCase(),
+  thriller    = document.getElementById('thriller').innerHTML.toLowerCase(),
+  crime       = document.getElementById('crime').innerHTML.toLowerCase(),
+  drama       = document.getElementById('drama').innerHTML.toLowerCase(),
+  mystery     = document.getElementById('mystery').innerHTML.toLowerCase(),
+  biography   = document.getElementById('biography').innerHTML.toLowerCase(),
+  animation   = document.getElementById('animation').innerHTML.toLowerCase(),
+  adventure   = document.getElementById('adventure').innerHTML.toLowerCase(),
+  family      = document.getElementById('family').innerHTML.toLowerCase()
+];
+
+filterOptions.forEach(filterFilms);
+
+function filterFilms (element, index, array) {
+  document.getElementById(element).addEventListener("click", function(){
+    var chosenFilter = this.innerHTML;
+    filmArray = [];
+    requestFilterFilms(chosenFilter);
   });
 }
 
+function requestFilterFilms (chosenFilter) {
+  request.onreadystatechange = () => {
+    if (request.readyState === 4 && request.status === 200) {
+      if (request.responseText !== 'error') {
+        var filteredFilmObj = JSON.parse(request.responseText);
+        filmArray.push(filteredFilmObj);
+        if (filmArray.length === 10) {
+          domManipulation(filmArray);
+        } else {
+          requestFilterFilms(chosenFilter);
+        }
+      } else {
+        alert('There was an error. Please try again');
+      }
+    }
+  };
+  request.open("GET", "/" + chosenFilter + "FilterOption");
+  request.send();
+  closeMenu();
+}
+
+
+function closeMenu() {
+  document.body.classList.remove('has-active-menu');
+  document.getElementById('c-menu--slide-left').classList.remove('is-active');
+  document.getElementById('c-mask').classList.remove('is-active');
+}
 
 function jTinder () {
   var count = filmArray.length-1;
@@ -109,7 +157,7 @@ function jTinder () {
   // });
 }
 
-// FILTER MENU
+// -------------- FILTER MENU ---------------------
 
 (function(window) {
   'use strict';
@@ -220,6 +268,5 @@ var slideLeftBtn = document.getElementById('filterIcon');
 
 slideLeftBtn.addEventListener('click', function(e) {
   e.preventDefault();
-  console.log('CLICKED!');
   slideLeft.open();
 });
