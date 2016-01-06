@@ -54,7 +54,7 @@ function watchList () {
   document.getElementById('userIcon').addEventListener("click", function(){
     request.onreadystatechange = () => {
       if (request.readyState === 4 && request.status === 200) {
-        console.log('£££££££££',request.responseText);
+        console.log('£££££££££', request.responseText);
       }
     };
     request.open("GET", "/getWatchList");
