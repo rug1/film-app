@@ -7,12 +7,12 @@ var plots = [];
 function loadFilms () {
   request.onreadystatechange = () => {
     if (request.readyState === 4 && request.status === 200) {
-      console.log('RESPONSE TEXT',request.responseText);
+      // console.log('RESPONSE TEXT',request.responseText);
       if (request.responseText !== 'error') {
         var filmObj = JSON.parse(request.responseText);
         filmArray.push(filmObj);
         if (filmArray.length === 10) {
-          console.log('FILM ARRAY', filmArray);
+          // console.log('FILM ARRAY', filmArray);
           domManipulation(filmArray);
         } else {
           loadFilms();
@@ -38,7 +38,7 @@ function domManipulation(filmArray) {
     var filmPlot = element.Plot;
     plots.push(filmPlot);
     if (count === filmArray.length) {
-      console.log('HTML OF FILMS',films);
+      // console.log('HTML OF FILMS',films);
       document.getElementById('films').innerHTML = films;
       document.getElementById('filmBio').innerHTML = plots[filmArray.length-1];
       jTinder();
@@ -54,7 +54,7 @@ function watchList () {
   document.getElementById('userIcon').addEventListener("click", function(){
     request.onreadystatechange = () => {
       if (request.readyState === 4 && request.status === 200) {
-        console.log('£££££££££', request.responseText);
+        // console.log('£££££££££', request.responseText);
       }
     };
     request.open("GET", "/getWatchList");
