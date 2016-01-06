@@ -54,3 +54,6 @@ app.filter = function (filterOption, callback) {
     }
   });
 };
+
+
+//THE MOVIE DATABASE API KEY: 6c0d1e185925d601bce47ed025a88ea3

@@ -39,7 +39,6 @@
 
 
 		init: function (element) {
-			console.log('INIT FUNCTION');
 			container = $(">ul", element);
 			panes = $(">ul>li", element);
 			pane_width = container.width();
@@ -53,18 +52,15 @@
 		},
 
 		showPane: function (index) {
-			console.log('SHOW PANE FUNCTION');
 			panes.eq(current_pane).hide();
 			current_pane = index;
 		},
 
 		next: function () {
-			console.log('NEXT FUNCTION');
 			return this.showPane(current_pane - 1);
 		},
 
 		dislike: function() {
-			console.log('DISLIKE FUNCTION');
 			panes.eq(current_pane).animate({"transform": "translate(-" + (pane_width) + "px," + (pane_width*-1.5) + "px) rotate(-60deg)"}, $that.settings.animationSpeed, function () {
 				if($that.settings.onDislike) {
 					$that.settings.onDislike(panes.eq(current_pane));
@@ -74,9 +70,7 @@
 		},
 
 		like: function() {
-			console.log('LIKE FUNCTION');
 			panes.eq(current_pane).animate({"transform": "translate(" + (pane_width) + "px," + (pane_width*-1.5) + "px) rotate(60deg)"}, $that.settings.animationSpeed, function () {
-				console.log('HERE');
 				if($that.settings.onLike) {
 					$that.settings.onLike(panes.eq(current_pane));
 				}
@@ -85,7 +79,6 @@
 		},
 
 		handler: function (ev) {
-			console.log('HANDLER FUNCTION');
 			ev.preventDefault();
 
 			switch (ev.type) {
