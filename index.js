@@ -91,6 +91,7 @@ function requestFilterFilms (chosenFilter) {
         filmArray.push(filteredFilmObj);
         if (filmArray.length === 10) {
           domManipulation(filmArray);
+          closeMenu();
         } else {
           requestFilterFilms(chosenFilter);
         }
@@ -101,7 +102,6 @@ function requestFilterFilms (chosenFilter) {
   };
   request.open("GET", "/" + chosenFilter + "FilterOption");
   request.send();
-  closeMenu();
 }
 
 
