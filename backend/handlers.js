@@ -43,7 +43,7 @@ handlers.addToWatchlist = function(req,res){
   //   res.writeHead(200, headers);
   //   res.end(reply);
   // });
-  res.end('PENDING');
+  res.end('OK');
 };
 
 handlers.getWatchList = function(req,res) {
