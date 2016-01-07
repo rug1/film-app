@@ -51,7 +51,7 @@ document.getElementById('userIcon').addEventListener("click", function(){
   request.onreadystatechange = () => {
     if (request.readyState === 4 && request.status === 200) {
       if (request.responseText !== 'error') {
-        console.log('GET WATCHLIST FROM DB>>>>>>>>', JSON.parse(request.responseText));
+        console.log('GET WATCHLIST FROM DB>>>>>>>>>', JSON.parse(request.responseText));
       } else {
         alert('There was an error. Please try again.');
       }
